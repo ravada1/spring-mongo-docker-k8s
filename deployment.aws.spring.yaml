@@ -1,20 +1,20 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
 kind: Deployment 
 metadata: 
-  name: angular-deployment 
+  name: springBoot-deployment 
 spec: 
   selector: 
     matchLabels: 
-      app: angular 
+      app: springBoot 
   replicas: 1 # tells deployment to run 2 pods matching the template 
   template:
     metadata: 
       labels: 
-        app: angular 
+        app: springBoot 
     spec: 
       containers: 
-      - name: angular 
-        image: 4544544/angular1:latest
+      - name: springBoot 
+        image: 4544544/spring-boot-mongo:latest
         imagePullPolicy: Always
         ports: 
         - containerPort: 80
@@ -35,10 +35,10 @@ spec:
 kind: Service 
 apiVersion: v1 
 metadata: 
-  name: angular-service 
+  name: springBoot-service 
 spec: 
   selector: 
-    app: angular 
+    app: springBoot 
   ports: 
   - protocol: TCP 
     port: 80 
