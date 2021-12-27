@@ -1,19 +1,19 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
 kind: Deployment 
 metadata: 
-  name: springBoot-deployment 
+  name: springboot-deployment
 spec: 
   selector: 
     matchLabels: 
-      app: springBoot 
+      app: springboot
   replicas: 2 # tells deployment to run 2 pods matching the template 
   template:
     metadata: 
       labels: 
-        app: springBoot 
+        app: springboot
     spec: 
       containers: 
-      - name: springBoot 
+      - name: springboot 
         image: 4544544/spring-boot-mongo:latest
         imagePullPolicy: Always
         ports: 
@@ -35,10 +35,10 @@ spec:
 kind: Service 
 apiVersion: v1 
 metadata: 
-  name: springBoot-service 
+  name: springboot-service 
 spec: 
   selector: 
-    app: springBoot 
+    app: springboot 
   ports: 
   - protocol: TCP 
     port: 80 
