@@ -6,7 +6,7 @@ spec:
   selector: 
     matchLabels: 
       app: springboot
-  replicas: 2 # tells deployment to run 2 pods matching the template 
+  replicas: 1 # tells deployment to run 2 pods matching the template 
   template:
     metadata: 
       labels: 
@@ -33,7 +33,7 @@ spec:
     targetPort: 80 
   type: NodePort
 ---
-  apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2 mongodb
+apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2 mongodb
 kind: ReplicationController 
 metadata: 
   labels:
