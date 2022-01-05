@@ -6,7 +6,7 @@ spec:
   selector: 
     matchLabels: 
       app: springboot
-  replicas: 1 # tells deployment to run 2 pods matching the template 
+  replicas: 2 # tells deployment to run 2 pods matching the template 
   template:
     metadata: 
       labels: 
@@ -31,48 +31,4 @@ spec:
   - protocol: TCP 
     port: 80 
     targetPort: 80 
-  type: NodePort
----
-apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2 mongodb
-kind: ReplicationController
-metadata: 
-  labels:
-    name: mongo
-  name: mongo-controller
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        name: mongo
-    spec:
-      containers:
-      - image: mongo
-        name: mongo
-        ports:
-        - name: mongo
-          containerPort: 2707
-          hostPort: 27017
-        volumeMounts:
-        - name: mongo-persistent-storage
-          mountPath: /data/db
-      volumes:
-      - name: mongo-persistent-storage
-        hostPath: 
-           path: /tmp/dbbackup
---- 
-# https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: mongo
-  name: mongo-service
-spec:
-  type: ClusterIP 
-  ports: 
-  - protocol: TCP 
-    port: 27017 
-    targetPort: 27017 
-  selector:
-      name: mongo
+  type: LoadBalancer
