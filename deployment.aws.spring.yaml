@@ -33,12 +33,12 @@ spec:
     targetPort: 80 
   type: NodePort
 ---
-apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2 mongodb
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 mongodb
 kind: deployment
 metadata: 
   labels:
     name: mongo
-  name: mongo-controller
+  name: mongo-deployment
 spec:
   replicas: 1
   template:
