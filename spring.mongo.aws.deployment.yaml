@@ -1,9 +1,9 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
-kind: ReplicationController 
+kind: deployment
 metadata: 
   labels:
     name: springboot
-  name: springboot-controller 
+  name: springboot-deployment 
 spec: 
   replicas: 1
   template:
@@ -37,11 +37,11 @@ spec:
 ---
 
 apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2 mongodb
-kind: ReplicationController 
+kind: deployment 
 metadata: 
   labels:
     name: mongo
-  name: mongo-controller
+  name: mongo-deployment
 spec:
   replicas: 1
   template:
